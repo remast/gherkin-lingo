@@ -1,0 +1,23 @@
+sudo: false
+language: go
+install:
+- go get -t -v .
+go:
+- 1.10.x
+script: go test -v .
+before_deploy:
+- curl -sL https://git.io/goreleaser | bash
+deploy:
+  provider: releases
+  api-key:
+    secure: krJY3AONgEfy1UhqwOODuo9357msjzMtGFaVF3oXtr46zpKbExXf/QE32kTs+98UAaZF4eF3fDx+Qxg07VNmOHpB1NSG5pQ0nBglnwvJN8sTqieel/v6ehJqFYtFGwFF6mlLIfAp88Ux0oSjhop7iCOvzxLE/IglWT8XpX6Ybo2JREVznZtGFDK0QOUxEWXZKUhpo7DsGVTP3ugN7iY/r32BfgTAcGios3w351+p42lFDYEyFVVE2dXbCpBDbPMJvSeOu2CiKwOAyQKxJK45k4zxD/EotcYtgjYZOeG0VJEVHhaliz/b2pOLPqNrGT3ajIPjpLa1dj2MjywVwM1dGmMhn06ySWVh8bV066cqKvlComsup7DVOX4A4Cotb5uvQGIbn6LzxCo075MGXXFp7RdhszPS5xc3r6q3dAKwyKPYCBP7xviKMRrGz24UdTOElVM6V9PWVBYv/cWhGU6VnUfyB4oSAVYe40jfDbNTawQxlpoTOCGEDhM1f+5y5xB6iFHG77Um5GPzBlgpn5BhIEZQVQq+DRAycz7VbNhslV7zVcwLsK56I+DdK5onMx2nkCN4h5OANTLpNCozj0Al5PbJH/sxE2x1A5CDvgC0qC2SdKZv8HGmYX65wk7F4KHk8TV4pPqssyRa7RJ4hTG6O2vw5DhDN+7fyPeOP/fHsu8=
+  file_glob: true
+  file:
+  - dist/gherkin-lingo-*.zip
+  - dist/gherkin-lingo-*.tar.bz2
+  - dist/gherkin-lingo-*.sha256
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: remast/gherkin-lingo
+    condition: "$TRAVIS_GO_VERSION =~ ^1\\.10\\.[0-9]+$"
