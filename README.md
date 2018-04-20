@@ -1,4 +1,5 @@
 # Gherkin Linter written in Go
+[ ![Codeship Status for remast/gherkin-lingo](https://app.codeship.com/projects/64b801e0-26ca-0136-cc56-228e383fc7c6/status?branch=master)](https://app.codeship.com/projects/286900)
 
 Linter for Gherkin files written in Go. Output is written in a standard format:
 
